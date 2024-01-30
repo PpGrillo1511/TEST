@@ -22,20 +22,8 @@
         <input type="password" name="contrasena" required>
         <label class="contrasena">Contraseña</label>
       </div>
-      <div class="content">
-        <div class="checkbox">
-          <input type="checkbox" id="remember-me">
-          <label for="remember-me">Recordar contaseña</label>
-        </div>
-        <div class="pass-link">
-          <a href="#">Olvidaste tu Contraseña?</a>
-        </div>
-      </div>
       <div class="field">
         <input type="submit" value="Login">
-      </div>
-      <div class="signup-link">
-        No eres miembro? <a href="#">Inicia sesión</a>
       </div>
     </form>
   </div>
