@@ -33,7 +33,7 @@ html, body {
     color: #fff;
     user-select: none;
     border-radius: 15px 15px 0 0;
-    background: linear-gradient(-135deg, #c850c0, #4158d0);
+    background: linear-gradient(-135deg, #c85050, #41a8d0);
 }
 
 .wrapper form {
@@ -146,4 +146,9 @@ form .signup-link a {
 form .pass-link a:hover,
 form .signup-link a:hover {
     text-decoration: underline;
+}
+
+.table{
+width: 20px;
+
 }

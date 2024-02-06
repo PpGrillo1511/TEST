@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="CSS/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link href="CSS/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
   <link rel="stylesheet" href="CSS/estilo.css">
   <title>Document</title>
 </head>
@@ -22,11 +22,23 @@
         <input type="password" name="contrasena" required>
         <label class="contrasena">Contraseña</label>
       </div>
+      <div class="content">
+        <div class="checkbox">
+          <input type="checkbox" id="remember-me">
+          <label for="remember-me">Recordar contaseña</label>
+        </div>
+        <div class="pass-link">
+          <a href="#">Olvidaste tu Contraseña?</a>
+        </div>
+      </div>
       <div class="field">
         <input type="submit" value="Login">
+      </div>
+      <div class="signup-link">
+        No eres miembro? <a href="#">Inicia sesión</a>
       </div>
     </form>
   </div>
 </body>
-<script src="scripts/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="scripts/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </html>

@@ -1,29 +1,30 @@
-<div>
-    <table>
-        <thead>
+<div class="table-responsive">
+    <table class="table">
+        <thead class="table-dark">
             <tr>
-                <th>Número de Cajón</th>
-                <th>Estatus</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
+                <th scope="col">Número</th>
+                <th scope="col">Estatus</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
             </tr>
         </thead>
         <tbody>
-            <?php
-            include "conexion.php";
+        <?php 
+            include 'conexion.php';
 
-            $query = "SELECT id_cajon, numero,status FROM cajon";
-            $ejecutar = $conexion->query($query);
-
-            while ($result = $ejecutar->fetch_array()) {
+            $query="SELECT id_cajon,numero,status FROM cajon";
+            $ejecutar=$conexion->query($query);
+            while($result=$ejecutar->fetch_array()){
                 echo "<tr>
-                        <td>" . $result['numero'] . "</td>
-                        <td>" . $result['status'] . "</td>
-                        <td><a href='' onclick='editarCajon(" . $result['id_cajon'] . ")'>Editar</a></td>
-                        <td><a href='' onclick='eliminarCajon(" . $result['id_cajon'] . ")'>Eliminar</a></td>
-                      </tr>";
+                <td>".$result['numero']."</td>
+                <td>".$result['status']."</td>
+
+                <td><a href='#' onclick='editarcajon(".$result['id_cajon'].");'>Editar</a></td>
+                <td><a href='#' onclick='eliminarcajon(".$result['id_cajon'].");'>Eliminar</a></td>
+                </tr>";
             }
             ?>
         </tbody>
     </table>
 </div>
+

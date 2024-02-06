@@ -1,6 +1,6 @@
-function cargarDiv(div,url){
+function cargarDiv(div, url) {
     $(div).load(url);
-}
+  }
 
 function salir(){
     alert("Salir del sistema");
@@ -13,11 +13,6 @@ function registrarCliente() {
     var correo = $("#correo").val();
     var telefono = $("#telefono").val();
 
-    if (nombre === "" || direccion === "" || correo === "" || telefono === "") {
-        alert("Por favor, complete todos los campos");
-        return;
-    }
-
     $.post("registrarCliente.php", {
             "nombre": nombre,
             "direccion": direccion,
@@ -29,7 +24,10 @@ function registrarCliente() {
             $("#direccion").val("");
             $("#telefono").val("");
             $("#correo").val("");
+            cargarDiv($("#result"),"consultarcliente.php")
+
         });
+
     
 }
 
@@ -52,6 +50,7 @@ function registrarCajon() {
         // Limpiar los campos después de registrar
         $("#numeroCajon").val("");
         $("#status").val("");
+        
     });
 }
 
@@ -140,38 +139,160 @@ function registrarEncargado() {
 }
 
 function registrarRegistro() {
+    var fechaIngreso = $("#fechaIngreso").val();
+    var horaIngreso = $("#horaIngreso").val();
+    var fechaSalida = $("#fechaSalida").val();
+    var horaSalida = $("#horaSalida").val();
     var vehiculo = $("#vehiculo").val();
     var cajon = $("#cajon").val();
     var tarifa = $("#tarifa").val();
 
     // Validar que los campos no estén vacíos
-    if (vehiculo === "" || cajon === "" || tarifa === "") {
+    if (fechaIngreso === "" || horaIngreso === "" || fechaSalida === "" || horaSalida === "" || vehiculo === "" || cajon === "" || tarifa === "") {
         alert("Por favor, complete todos los campos");
         return;
     }
 
     // Realizar la solicitud AJAX para registrar el registro de horas
     $.post("registrarRegistro.php", {
+        "fechaIngreso": fechaIngreso,
+        "horaIngreso": horaIngreso,
+        "fechaSalida": fechaSalida,
+        "horaSalida": horaSalida,
         "vehiculo": vehiculo,
         "cajon": cajon,
         "tarifa": tarifa
     }, function (result) {
         alert(result);
         // Limpiar los campos después de registrar
+        $("#fechaIngreso").val("");
+        $("#horaIngreso").val("");
+        $("#fechaSalida").val("");
+        $("#horaSalida").val("");
         $("#vehiculo").val("");
         $("#cajon").val("");
         $("#tarifa").val("");
     });
 }
-cargarDiv
 
-function eliminarCliente (idCliente) {
-    $.post("eliminarCliente.php",{
-        "id_cliente":idCliente
-    },
-    function (result) {
-    alert(result)
-      });
-      cargarDiv($('#result'), 'consultarCliente.php')
+function eliminarcajon(id_cajon){
+$.post("eliminarcajon.php",{
+"id_cajon":id_cajon
+},
+function(result){
+alert(result)
+})
+cargarDiv($("#result"),"consultarcajon.php")
 }
 
+function eliminarcliente(id_cliente){
+    $.post("eliminarcliente.php",{
+    "id_cliente":id_cliente
+    },
+    function(result){
+    alert(result)
+    })
+    cargarDiv($("#result"),"consultarcliente.php")
+    }
+
+function eliminarencargado(id_encargado){
+    $.post("eliminarencargado.php",{
+        "id_encargado":id_encargado
+        },
+        function(result){
+        alert(result)
+        })
+        cargarDiv($("#result"),"consultarencargado.php")
+        }
+
+function eliminarregistro(id_registro){
+    $.post("eliminarregistro.php",{
+        "id_registro":id_registro
+    },
+    function(result){
+        alert(result)
+    })
+    cargarDiv($("#result"),"consultarregistro.php")
+}
+
+function eliminartarifa(id_tarifa){
+    $.post("eliminartarifa.php",{
+        "id_tarifa":id_tarifa
+    },
+    function(result){
+        alert(result)
+    })
+    cargarDiv($("#result"),"consultartarifa.php")
+}
+
+function eliminarvechiculo(id_vehiculo){
+    $.post("eliminarvehiculo.php",{
+        "id_vehiculo":id_vehiculo
+    },
+    function(result){
+        alert(result)
+    })
+    cargarDiv($("#result"),"consultarvehiculo.php")
+}
+
+function editarcliente(id_cliente){
+    $.post("editarcliente.php",{
+        "id_cliente":id_cliente
+    },
+    function(respuesta){
+        contenido.innerHTML=respuesta;
+
+    })
+}
+
+function modificarCliente(id_cliente) {
+    var nombre = $("#nombre").val();
+    var direccion = $("#direccion").val();
+    var correo = $("#correo").val();
+    var telefono = $("#telefono").val();
+
+    $.post("actualizarcliente.php", {
+            "id_cliente":id_cliente,
+            "nombre": nombre,
+            "direccion": direccion,
+            "correo": correo,
+            "telefono": telefono
+        },function(result){
+            alert(result);
+            $("#nombre").val("");
+            $("#direccion").val("");
+            $("#telefono").val("");
+            $("#correo").val("");
+            cargarDiv($("#result"),"cliente.php")
+
+
+        });
+}
+
+function editarcajon(id_cajon){
+    $.post("editarcajon.php",{
+        "id_cajon":id_cajon
+    },
+    function(respuesta){
+        contenido.innerHTML=respuesta;
+
+    })
+}
+
+function modificarCajon(id_cajon) {
+    var numeroCajon = $("#numeroCajon").val();
+    var status = $("#status").val();
+
+    $.post("actualizarcajon.php", {
+            "id_cajon":id_cajon,
+            "numeroCajon": numeroCajon,
+            "status": status
+        },function(result){
+            alert(result);
+            $("#numeroCajon").val("");
+            $("#status").val("");
+            cargarDiv($("#result"),"cajon.php")
+
+
+        });
+}

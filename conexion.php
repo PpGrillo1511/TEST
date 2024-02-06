@@ -20,5 +20,6 @@ if(mysqli_connect_error()){
     exit('Fallo en la conexion de MySQL: ' . mysqli_connect_error());
 }else{
     //MENSAJE DE QUE LA CONEXION FUE EXITOSA..
+    // echo "Conexion exitosa ";
 }
 ?>

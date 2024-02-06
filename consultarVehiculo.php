@@ -1,34 +1,34 @@
-<div>
-    <table>
-        <thead>
+<div class="table-responsive">
+    <table class="table">
+        <thead class="table-dark">
             <tr>
-                <th>Matrícula</th>
-                <th>Modelo</th>
-                <th>Tipo</th>
-                <th>Cliente</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
+                <th scope="col">Matricula</th>
+                <th scope="col">Modelo</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
             </tr>
         </thead>
         <tbody>
-            <?php
-            include "conexion.php";
+        <?php 
+            include 'conexion.php';
 
-            $query = "SELECT v.id_vehiculo, v.matricula, v.modelo, v.tipo, c.nombre as cliente_nombre FROM vehiculos v
-                      JOIN cliente c ON v.id_cliente = c.id_cliente";
-            $ejecutar = $conexion->query($query);
-
-            while ($result = $ejecutar->fetch_array()) {
+            $query="SELECT id_vehiculo,Matricula, Modelo,tipo,id_cliente FROM vehiculos";
+            $ejecutar=$conexion->query($query);
+            while($result=$ejecutar->fetch_array()){
                 echo "<tr>
-                        <td>" . $result['matricula'] . "</td>
-                        <td>" . $result['modelo'] . "</td>
-                        <td>" . $result['tipo'] . "</td>
-                        <td>" . $result['cliente_nombre'] . "</td>
-                        <td><a href='' onclick='editarVehiculo(" . $result['id_vehiculo'] . ")'>Editar</a></td>
-                        <td><a href='' onclick='eliminarVehiculo(" . $result['id_vehiculo'] . ")'>Eliminar</a></td>
-                      </tr>";
+                <td>".$result['Matricula']."</td>
+                <td>".$result['Modelo']."</td>
+                <td>".$result['tipo']."</td>
+                <td>".$result['id_cliente']."</td>
+
+                <td><a href='' onclick='editarcliente(".$result['id_vehiculo'].");'>Editar</a></td>
+                <td><a href='' onclick='eliminarvechiculo(".$result['id_vehiculo'].");'>Eliminar</a></td>
+                </tr>";
             }
             ?>
         </tbody>
     </table>
 </div>
+

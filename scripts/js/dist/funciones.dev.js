@@ -16,12 +16,6 @@ function registrarCliente() {
   var direccion = $("#direccion").val();
   var correo = $("#correo").val();
   var telefono = $("#telefono").val();
-
-  if (nombre === "" || direccion === "" || correo === "" || telefono === "") {
-    alert("Por favor, complete todos los campos");
-    return;
-  }
-
   $.post("registrarCliente.php", {
     "nombre": nombre,
     "direccion": direccion,
@@ -54,6 +48,8 @@ function registrarCajon() {
 
     $("#numeroCajon").val("");
     $("#status").val("");
+    cargarDiv($("#result"),"consultarcajon.php")
+
   });
 }
 
@@ -138,36 +134,38 @@ function registrarEncargado() {
 }
 
 function registrarRegistro() {
+  var fechaIngreso = $("#fechaIngreso").val();
+  var horaIngreso = $("#horaIngreso").val();
+  var fechaSalida = $("#fechaSalida").val();
+  var horaSalida = $("#horaSalida").val();
   var vehiculo = $("#vehiculo").val();
   var cajon = $("#cajon").val();
   var tarifa = $("#tarifa").val(); // Validar que los campos no estén vacíos
 
-  if (vehiculo === "" || cajon === "" || tarifa === "") {
+  if (fechaIngreso === "" || horaIngreso === "" || fechaSalida === "" || horaSalida === "" || vehiculo === "" || cajon === "" || tarifa === "") {
     alert("Por favor, complete todos los campos");
     return;
   } // Realizar la solicitud AJAX para registrar el registro de horas
 
 
   $.post("registrarRegistro.php", {
+    "fechaIngreso": fechaIngreso,
+    "horaIngreso": horaIngreso,
+    "fechaSalida": fechaSalida,
+    "horaSalida": horaSalida,
     "vehiculo": vehiculo,
     "cajon": cajon,
     "tarifa": tarifa
   }, function (result) {
     alert(result); // Limpiar los campos después de registrar
 
+    $("#fechaIngreso").val("");
+    $("#horaIngreso").val("");
+    $("#fechaSalida").val("");
+    $("#horaSalida").val("");
     $("#vehiculo").val("");
     $("#cajon").val("");
     $("#tarifa").val("");
   });
 }
 
-cargarDiv;
-
-function eliminarCliente(idCliente) {
-  $.post("eliminarCliente.php", {
-    "id_cliente": idCliente
-  }, function (result) {
-    alert(result);
-  });
-  cargarDiv($('#result'), 'consultarCliente.php');
-}
